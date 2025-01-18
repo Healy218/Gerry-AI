@@ -1,7 +1,12 @@
 import os
 from twitchio.ext import commands
 import openai
+from dotenv import load_dotenv
 
+load_dotenv('/keys.env')
+
+TWITCH_OAUTH_TOKEN = os.getenv("TWITCH_OAUTH_TOKEN")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # Define your bot class
 class Bot(commands.Bot):
