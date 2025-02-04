@@ -1,1 +1,11 @@
+# Ignore .env files
 .env
+keys.env
+# Ignore Python bytecode files
+__pycache__/
+*.pyc
+
+# Ignore VS Code settings folder (optional)
+.vscode/
+
+# Ignore any other files that shouldn't be tracked
