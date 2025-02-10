@@ -60,15 +60,17 @@ class TwitchBot(commands.Bot):
                     else:
                         await message.channel.send(f"@{message.author.name}, {message_content}")
 
-                    # ✅ Generate TTS 
+                    #✅ Generate TTS 
                     tts_file = text_to_speech_file(message_content)
 
                     #activate filter on image
-                    obswebsockets_manager.set_filter_visibility(Scene, GerryAI, True)
+                    obswebsockets_manager.set_filter_visibility("Desktop Audio", "Gerry", True)
                     
                     # ✅ Play audio response
+                    print(message_content)
                     player = AudioPlayer(tts_file)
                     player.play(block=True)
+                    
                     #audio_manager.play(tts_file)
 
                 except Exception as e:
@@ -76,7 +78,7 @@ class TwitchBot(commands.Bot):
                     await message.channel.send("Error generating a response. Try again later.")
 
                 #turn off filter in obs
-                obswebsockets_manager.set_filter_visibility(Scene, GerryAI, False)
+                obswebsockets_manager.set_filter_visibility("Desktop Audio", "Gerry", False)
 
 bot = TwitchBot()
 bot.run()
