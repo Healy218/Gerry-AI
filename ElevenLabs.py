@@ -20,14 +20,14 @@ def text_to_speech_file(text: str) -> str:
     os.makedirs(backup_dir, exist_ok=True)
     # Calling the text_to_speech conversion API with detailed parameters
     response = client.text_to_speech.convert(
-        voice_id="UZAh1WD3AhxDclPcWvsX", # Gerry
+        voice_id="viyyLJOwpZc4bofwHde1", # Gerry
         output_format="mp3_22050_32",
         text=text,
         model_id="eleven_turbo_v2_5", # use the turbo model for low latency
         voice_settings=VoiceSettings(
-            stability=0.0,
-            similarity_boost=1.0,
-            style=0.0,
+            stability=0.5,
+            similarity_boost=0.5,
+            style=0.5,
             use_speaker_boost=True,
         ),
     )

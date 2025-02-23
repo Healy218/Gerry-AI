@@ -47,21 +47,20 @@ class TwitchBot(commands.Bot):
             query = message.content[5:].strip()
             if query:
                 await self.handle_query(query, message.channel, message.author.name)
-        else:
-            # Collect regular messages for summarization
+        elif message.content.startswith("!bg3"):
             self.messages.append(message.content.lower())
-            if len(self.messages) >= 20:
+            if len(self.messages) >= 9:
                 await self.handle_summarization(message.channel)
 
     async def handle_query(self, query, channel, author):
         try:
             response = client.chat.completions.create(
-                model="gpt-4o",  # Make sure this model is available for you
+                model="gpt-4o-mini",  # Make sure this model is available for you
                 messages=[
-                    {"role": "system", "content": "You are an assistant."},
+                    {"role": "system", "content": "You are a bloodthirsty Orc woman relaying chat commands in 30 words or less."},
                     {"role": "user", "content": query}
                 ],
-                max_tokens=150
+                max_tokens=60
             )
             answer = response.choices[0].message.content.strip()
             await self.send_response_in_chunks(channel, author, answer)
@@ -75,17 +74,17 @@ class TwitchBot(commands.Bot):
         most_common = Counter(self.messages).most_common(3)
         common_phrases = [f'"{phrase}" ({count} times)' for phrase, count in most_common]
         prompt = (
-            "Summarize the most common messages from Twitch chat in 30 words or less:\n\n"
+            "Rank the messages from Twitch chat by frequency as a bloodthirsty Orc Woman in 30 words or less:\n\n"
             + "\n".join(common_phrases)
         )
         try:
             response = client.chat.completions.create(
-                model="gpt-4o",
+                model="gpt-4o-mini",
                 messages=[
-                    {"role": "system", "content": "You are a summarization assistant."},
-                    {"role": "user", "content": prompt}
+                    {"role": "system", "content": "You are a Gen Z Orc woman relaying chat commands in 30 words or less."},
+                    {"role": "user", "content": "As a Gen Z Orc Woman, " + prompt}
                 ],
-                max_tokens=30
+                max_tokens=100
             )
             summary = response.choices[0].message.content.strip()
             await channel.send(f"Chat Summary: {summary}")
@@ -96,21 +95,15 @@ class TwitchBot(commands.Bot):
         finally:
             self.messages.clear()  # Reset messages after processing
 
-    async def send_response_in_chunks(self, channel, author, content):
-        chunk_size = 499
-        if len(content) > chunk_size:
-            for i in range(0, len(content), chunk_size):
-                chunk = content[i : i + chunk_size]
-                await channel.send(f"@{author}, {chunk}")
-        else:
-            await channel.send(f"@{author}, {content}")
-
     async def generate_and_play_tts(self, text):
         try:
             # Generate TTS audio file using ElevenLabs
             tts_file = text_to_speech_file(text)
+
             # Activate OBS filter before playing audio
-            obswebsockets_manager.set_filter_visibility("Desktop Audio", "Gerry", True)
+            obswebsockets_manager.set_source_visibility("BG3", "OrcLady2", True)
+            obswebsockets_manager.set_filter_visibility("Desktop Audio", "OrcLady", True)
+
             # Play the generated audio
             player = AudioPlayer(tts_file)
             player.play(block=True)
@@ -118,7 +111,8 @@ class TwitchBot(commands.Bot):
             print(f"Error in TTS generation or audio playback: {e}")
         finally:
             # Turn off the OBS filter
-            obswebsockets_manager.set_filter_visibility("Desktop Audio", "Gerry", False)
+            obswebsockets_manager.set_filter_visibility("Desktop Audio", "OrcLady", False)
+            obswebsockets_manager.set_source_visibility("BG3", "OrcLady2", False)
 
 bot = TwitchBot()
 bot.run()
