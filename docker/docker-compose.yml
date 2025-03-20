@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  gerry-ai:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - '8000:8000' # For the ticker server
+    volumes:
+      - ..:/app # Mount the current directory to /app in the container
+      - ../config:/app/config # Mount config directory
+    environment:
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - ../config/keys.env # Load environment variables from keys.env
+    restart: unless-stopped

@@ -1,7 +1,6 @@
-# Environment variables
-.env
-keys.env
-.env.*
+# Git
+.git
+.gitignore
 
 # Python
 __pycache__/
@@ -9,6 +8,7 @@ __pycache__/
 *$py.class
 *.so
 .Python
+env/
 build/
 develop-eggs/
 dist/
@@ -28,28 +28,14 @@ wheels/
 # Virtual Environment
 venv/
 ENV/
-env/
-env.bak/
-venv.bak/
 
-# IDE settings
-.vscode/
+# IDE
 .idea/
+.vscode/
 *.swp
 *.swo
 
-# Audio files
-data/audiobackup/
+# Project specific
+audiobackup/
 *.mp3
-*.wav
-*.ogg
-*.m4a
-
-# Logs
-*.log
-logs/
-log/
-
-# OS specific
-.DS_Store
-Thumbs.db
+*.wav 
