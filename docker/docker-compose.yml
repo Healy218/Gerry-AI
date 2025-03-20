@@ -1,17 +1,26 @@
-version: '3.8'
-
 services:
   gerry-ai:
     build:
       context: ..
       dockerfile: docker/Dockerfile
     ports:
-      - '8000:8000' # For the ticker server
+      - '8000:8000'
+      - '4455:4455'
     volumes:
-      - ..:/app # Mount the current directory to /app in the container
-      - ../config:/app/config # Mount config directory
+      - ../:/app
+      - ../config:/app/config
+      - ../data/audiobackup:/app/data/audiobackup
     environment:
       - PYTHONUNBUFFERED=1
+      - BOT_NAME=GerryAI
     env_file:
-      - ../config/keys.env # Load environment variables from keys.env
+      - ../config/keys.env
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
     restart: unless-stopped
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:8000']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    command: python main.py --bot ${BOT_NAME:-GerryAI}

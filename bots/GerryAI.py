@@ -3,8 +3,12 @@ import os
 from twitchio.ext import commands
 from dotenv import load_dotenv
 from utilities.ElevenLabs import text_to_speech_file
-from audioplayer import AudioPlayer
 from utilities.obs_websockets import OBSWebsocketsManager
+
+# Only import AudioPlayer if not in Docker
+if not os.environ.get("DOCKER_CONTAINER"):
+    from audioplayer import AudioPlayer
+
 # Load environment variables
 load_dotenv(dotenv_path="config/keys.env")
 
@@ -63,22 +67,24 @@ class TwitchBot(commands.Bot):
                     #✅ Generate TTS 
                     tts_file = text_to_speech_file(message_content, bot_name="GERRY")
 
-                    #activate filter on image
-                    obswebsockets_manager.set_filter_visibility("Desktop Audio", "Gerry", True)
-                    
-                    # ✅ Play audio response
-                    print(message_content)
-                    player = AudioPlayer(tts_file)
-                    player.play(block=True)
-                    
-                    #audio_manager.play(tts_file)
+                    # Only play audio and handle OBS if not in Docker
+                    if not os.environ.get("DOCKER_CONTAINER"):
+                        #activate filter on image
+                        obswebsockets_manager.set_filter_visibility("Desktop Audio", "Gerry", True)
+                        
+                        # ✅ Play audio response
+                        print(message_content)
+                        player = AudioPlayer(tts_file)
+                        player.play(block=True)
+                        
+                        #turn off filter in obs
+                        obswebsockets_manager.set_filter_visibility("Desktop Audio", "Gerry", False)
+                    else:
+                        print(f"Docker mode: Audio file saved at {tts_file}")
 
                 except Exception as e:
                     print(f"Error with Ollama: {e}")
                     await message.channel.send("Error generating a response. Try again later.")
-
-                #turn off filter in obs
-                obswebsockets_manager.set_filter_visibility("Desktop Audio", "Gerry", False)
 
 bot = TwitchBot()
 bot.run()

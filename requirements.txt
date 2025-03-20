@@ -4,7 +4,7 @@ openai>=1.12.0
 anthropic>=0.18.1
 ollama>=0.1.6
 audioplayer>=0.4
-obs-websocket-py>=5.0.1
+obs-websocket-py==1.0
 elevenlabs>=0.3.0
 keyboard>=0.13.5
 flask>=3.0.2 

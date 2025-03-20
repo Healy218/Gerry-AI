@@ -53,6 +53,11 @@ def text_to_speech_file(text: str, bot_name: str = "DEFAULT") -> str:
 
     print(f"{save_file_path}: A new audio file was saved successfully!")
 
+    # Check if we're running in Docker
+    if os.environ.get("DOCKER_CONTAINER"):
+        print("Running in Docker - skipping audio playback")
+        return save_file_path
+
     # Return the path of the saved audio file
     return save_file_path
 
