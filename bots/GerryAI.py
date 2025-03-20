@@ -61,7 +61,7 @@ class TwitchBot(commands.Bot):
                         await message.channel.send(f"@{message.author.name}, {message_content}")
 
                     #✅ Generate TTS 
-                    tts_file = text_to_speech_file(message_content)
+                    tts_file = text_to_speech_file(message_content, bot_name="GERRY")
 
                     #activate filter on image
                     obswebsockets_manager.set_filter_visibility("Desktop Audio", "Gerry", True)

@@ -99,7 +99,7 @@ class TwitchBot(commands.Bot):
     async def generate_and_play_tts(self, text):
         try:
             # Generate TTS audio file using ElevenLabs
-            tts_file = text_to_speech_file(text)
+            tts_file = text_to_speech_file(text, bot_name="BG3")
             # Activate OBS filter before playing audio
             obswebsockets_manager.set_source_visibility("BG3", "OrcLady2", True)
             obswebsockets_manager.set_filter_visibility("Desktop Audio", "OrcLady", True)
