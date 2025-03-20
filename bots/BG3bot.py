@@ -3,16 +3,16 @@ from twitchio.ext import commands
 from collections import Counter
 from dotenv import load_dotenv
 from openai import OpenAI
-from ElevenLabs import text_to_speech_file
+from utilities.ElevenLabs import text_to_speech_file
 from audioplayer import AudioPlayer
-from obs_websockets import OBSWebsocketsManager
+from utilities.obs_websockets import OBSWebsocketsManager
 
 # Load environment variables
-load_dotenv(dotenv_path="C:/Users/mrhea/OneDrive/Documents/Coding Projects/Gerry AI/keys.env")
+load_dotenv(dotenv_path="config/keys.env")
 
 TOKEN = os.getenv("TWITCH_OAUTH_TOKEN")
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-BOT_NICK = "WSBAIChatBot"
+BOT_NICK = "Healy218AIChatBot"
 CHANNEL = "Healy218"
 DEFAULT_VOICE = "Rachel"  # Default ElevenLabs voice
 
@@ -58,13 +58,13 @@ class TwitchBot(commands.Bot):
             response = client.chat.completions.create(
                 model="gpt-4o-mini",  # Make sure this model is available for you
                 messages=[
-                    {"role": "system", "content": "You are a gen-z redditor on the wallstreetbets subreddit using 30 words or less."},
+                    {"role": "system", "content": "You are a bloodythirsty Orc woman relaying chat commands in 30 words or less."},
                     {"role": "user", "content": query}
                 ],
                 max_tokens=60
             )
             answer = response.choices[0].message.content.strip()
-            #await self.send_response_in_chunks(channel, author, answer)
+            await self.send_response_in_chunks(channel, author, answer)
             await self.generate_and_play_tts(answer)
         except Exception as e:
             print(f"Error with chat completions: {e}")
@@ -75,15 +75,15 @@ class TwitchBot(commands.Bot):
         most_common = Counter(self.messages).most_common(3)
         common_phrases = [f'"{phrase}" ({count} times)' for phrase, count in most_common]
         prompt = (
-            "Give an answer in the style of a gen-z redditor on the wallstreetbets subreddit in 30 words or less:\n\n"
+            "Rank the messages from Twitch chat by frequency as a bloodthirsty Orc Woaman in 30 words or less:\n\n"
             + "\n".join(common_phrases)
         )
         try:
             response = response = client.chat.completions.create(
             model="gpt-4o-mini",
             messages=[
-                {"role": "system", "content": "You are a genz wallstreetbets commentor in 30 words or less."},
-                {"role": "user", "content": "As a genZ wallstreetbets commentor, " + prompt}
+                {"role": "system", "content": "You are a genz Orc woman relaying chat commands in 30 words or less."},
+                {"role": "user", "content": "As a genZ Orc Woman, " + prompt}
             ],
             max_tokens=100
         )
@@ -101,8 +101,8 @@ class TwitchBot(commands.Bot):
             # Generate TTS audio file using ElevenLabs
             tts_file = text_to_speech_file(text)
             # Activate OBS filter before playing audio
-            obswebsockets_manager.set_source_visibility("FEPO", "WSBkid", True)
-            obswebsockets_manager.set_filter_visibility("Desktop Audio", "WSBkidaudio", True)
+            obswebsockets_manager.set_source_visibility("BG3", "OrcLady2", True)
+            obswebsockets_manager.set_filter_visibility("Desktop Audio", "OrcLady", True)
             # Play the generated audio
             player = AudioPlayer(tts_file)
             player.play(block=True)
@@ -110,8 +110,8 @@ class TwitchBot(commands.Bot):
             print(f"Error in TTS generation or audio playback: {e}")
         finally:
             # Turn off the OBS filter
-            obswebsockets_manager.set_filter_visibility("Desktop Audio", "WSBkidaudio", False)
-            obswebsockets_manager.set_source_visibility("FEPO", "WSBkid", False)
+            obswebsockets_manager.set_filter_visibility("Desktop Audio", "OrcLady", False)
+            obswebsockets_manager.set_source_visibility("BG3", "OrcLady2", False)
 
 bot = TwitchBot()
 bot.run()

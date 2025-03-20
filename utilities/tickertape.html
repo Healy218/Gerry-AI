@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>FEPO Ticker Tape</title>
+		<style>
+			body {
+				margin: 0;
+				padding: 0;
+				background-color: #1e222d;
+			}
+			.tradingview-widget-container {
+				width: 100%;
+				height: 100vh;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- TradingView Widget BEGIN -->
+		<div class="tradingview-widget-container">
+			<div class="tradingview-widget-container__widget"></div>
+			<div class="tradingview-widget-copyright">
+				<a
+					href="https://www.tradingview.com/"
+					rel="noopener nofollow"
+					target="_blank"
+					><span class="blue-text">Track all markets on TradingView</span></a
+				>
+			</div>
+			<script
+				type="text/javascript"
+				src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js"
+				async
+			>
+				{
+				"symbols": [
+				  {
+					"proName": "FOREXCOM:SPXUSD",
+					"title": "S&P 500 Index"
+				  },
+				  {
+					"proName": "FOREXCOM:NSXUSD",
+					"title": "US 100 Cash CFD"
+				  },
+				  {
+					"proName": "FX_IDC:EURUSD",
+					"title": "EUR to USD"
+				  },
+				  {
+					"proName": "BITSTAMP:BTCUSD",
+					"title": "Bitcoin"
+				  },
+				  {
+					"proName": "BITSTAMP:ETHUSD",
+					"title": "Ethereum"
+				  },
+				  {
+					"description": "SPY",
+					"proName": "AMEX:SPY"
+				  },
+				  {
+					"description": "Apple",
+					"proName": "NASDAQ:AAPL"
+				  },
+				  {
+					"description": "Microsoft",
+					"proName": "NASDAQ:MSFT"
+				  },
+				  {
+					"description": "Google",
+					"proName": "NASDAQ:GOOG"
+				  },
+				  {
+					"description": "Amazon",
+					"proName": "NASDAQ:AMZN"
+				  },
+				  {
+					"description": "Tesla",
+					"proName": "NASDAQ:TSLA"
+				  },
+				  {
+					"description": "Meta",
+					"proName": "NASDAQ:META"
+				  },
+				  {
+					"description": "Nvidia",
+					"proName": "NASDAQ:NVDA"
+				  },
+				  {
+					"description": "Netflix",
+					"proName": "NASDAQ:NFLX"
+				  },
+				  {
+					"description": "Intel",
+					"proName": "NASDAQ:INTC"
+				  },
+				  {
+					"description": "AMD",
+					"proName": "NASDAQ:AMD"
+				  },
+				  {
+					"description": "IBM",
+					"proName": "NYSE:IBM"
+				  },
+				  {
+					"description": "Oracle",
+					"proName": "NYSE:ORCL"
+				  },
+				  {
+					"description": "Qualcomm",
+					"proName": "NASDAQ:QCOM"
+				  },
+				  {
+					"description": "SnapChat",
+					"proName": "NYSE:SNAP"
+				  },
+				  {
+					"description": "Spotify",
+					"proName": "NYSE:SPOT"
+				  },
+				  {
+					"description": "QQQ",
+					"proName": "NASDAQ:QQQ"
+				  },
+				  {
+					"description": "VTI",
+					"proName": "AMEX:VTI"
+				  },
+				  {
+					"description": "Walmart",
+					"proName": "NYSE:WMT"
+				  },
+				  {
+					"description": "Target",
+					"proName": "NYSE:TGT"
+				  },
+				  {
+					"description": "Best Buy",
+					"proName": "NYSE:BBY"
+				  },
+				  {
+					"description": "Rigetti Computing",
+					"proName": "NASDAQ:RGTI"
+				  },
+				  {
+					"description": "ASTS SpaceMobile",
+					"proName": "NASDAQ:ASTS"
+				  },
+				  {
+					"description": "Alibaba",
+					"proName": "NYSE:BABA"
+				  },
+				  {
+					"description": "Enbridge Energy",
+					"proName": "TSX:ENB"
+				  },
+				  {
+					"description": "PDD (Temu)",
+					"proName": "NASDAQ:PDD"
+				  },
+				  {
+					"description": "Taiwan Semiconductor",
+					"proName": "NYSE:TSM"
+				  },
+				  {
+					"description": "LI Auto",
+					"proName": "NASDAQ:LI"
+				  },
+				  {
+					"description": "Ford",
+					"proName": "NYSE:F"
+				  },
+				  {
+					"description": "General Motors",
+					"proName": "NYSE:GM"
+				  },
+				  {
+					"description": "Tencent",
+					"proName": "OTC:TCEHY"
+				  },
+				  {
+					"description": "Uber",
+					"proName": "NYSE:UBER"
+				  },
+				  {
+					"description": "XPEV Auto",
+					"proName": "NYSE:XPEV"
+				  },
+				  {
+					"description": "Costco",
+					"proName": "NASDAQ:COST"
+				  },
+				  {
+					"description": "CrowdStrike",
+					"proName": "NASDAQ:CRWD"
+				  },
+				  {
+					"description": "MicroStrategy",
+					"proName": "NASDAQ:MSTR"
+				  },
+				  {
+					"description": "Doge Coin",
+					"proName": "CRYPTOCAP:DOGE"
+				  },
+				  {
+					"description": "Trump Media",
+					"proName": "NASDAQ:DJT"
+				  },
+				  {
+					"description": "NANC Etf",
+					"proName": "CBOE:NANC"
+				  }
+				],
+				"showSymbolLogo": true,
+				"isTransparent": false,
+				"displayMode": "adaptive",
+				"colorTheme": "dark",
+				"locale": "en"
+				 }
+			</script>
+		</div>
+		<!-- TradingView Widget END -->
+	</body>
+</html>

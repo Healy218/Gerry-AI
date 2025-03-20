@@ -3,9 +3,9 @@ from twitchio.ext import commands
 from collections import Counter
 from dotenv import load_dotenv
 from openai import OpenAI
-from ElevenLabs import text_to_speech_file
+from utilities.ElevenLabs import text_to_speech_file
 from audioplayer import AudioPlayer
-from obs_websockets import OBSWebsocketsManager
+from utilities.obs_websockets import OBSWebsocketsManager
 
 # Load environment variables
 load_dotenv(dotenv_path="C:/Users/mrhea/OneDrive/Documents/Coding Projects/Gerry AI/keys.env")

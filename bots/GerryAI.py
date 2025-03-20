@@ -2,11 +2,11 @@ import ollama
 import os
 from twitchio.ext import commands
 from dotenv import load_dotenv
-from ElevenLabs import text_to_speech_file
+from utilities.ElevenLabs import text_to_speech_file
 from audioplayer import AudioPlayer
-from obs_websockets import OBSWebsocketsManager
+from utilities.obs_websockets import OBSWebsocketsManager
 # Load environment variables
-load_dotenv(dotenv_path="C:/Users/mrhea/OneDrive/Documents/Coding Projects/Gerry AI/keys.env")
+load_dotenv(dotenv_path="config/keys.env")
 
 TOKEN = os.getenv("TWITCH_OAUTH_TOKEN")
 BOT_NICK = "Healy218AIChatBot"

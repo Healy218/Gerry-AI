@@ -1,6 +1,6 @@
 import time
 from obswebsocket import obsws, requests  # noqa: E402
-from websockets_auth import WEBSOCKET_HOST, WEBSOCKET_PORT, WEBSOCKET_PASSWORD
+from config.websockets_auth import WEBSOCKET_HOST, WEBSOCKET_PORT, WEBSOCKET_PASSWORD
 
 ##########################################################
 ##########################################################
