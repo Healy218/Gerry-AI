@@ -18,10 +18,10 @@ VOICE_SETTINGS = {
         "use_speaker_boost": True
     },
     "BG3": {
-        "speed": 1,
-        "stability": 0.7,
-        "similarity_boost": 0.7,
-        "style": 0.3,
+        "speed": .91,
+        "stability": 0.13,
+        "similarity_boost": 0.85,
+        "style": 0.99,
         "use_speaker_boost": True
     },
     "CLAUDE": {
@@ -44,10 +44,10 @@ VOICE_SETTINGS = {
         "use_speaker_boost": True
     },
     "DEFAULT": {
-        "speed": 1,
-        "stability": 0.5,
-        "similarity_boost": 0.5,
-        "style": 0.5,
+        "speed": .85,
+        "stability": 0.3,
+        "similarity_boost": 0.7,
+        "style": 0.91,
         "use_speaker_boost": True
     }
 } 
