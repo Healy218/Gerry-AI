@@ -105,7 +105,7 @@ class TwitchBot(commands.Bot):
             # Generate TTS audio file using ElevenLabs
             tts_file = text_to_speech_file(text, bot_name="WSB")
             # Activate OBS filter before playing audio
-            obswebsockets_manager.set_source_visibility("FEPO", "WSBkid", True)
+            obswebsockets_manager.set_source_visibility("ToolShed", "WSBkid", True)
             obswebsockets_manager.set_filter_visibility("Desktop Audio", "WSBkidaudio", True)
             # Play the generated audio
             player = AudioPlayer(tts_file)
@@ -115,7 +115,7 @@ class TwitchBot(commands.Bot):
         finally:
             # Turn off the OBS filter
             obswebsockets_manager.set_filter_visibility("Desktop Audio", "WSBkidaudio", False)
-            obswebsockets_manager.set_source_visibility("FEPO", "WSBkid", False)
+            obswebsockets_manager.set_source_visibility("ToolShed", "WSBkid", False)
 
 bot = TwitchBot()
 bot.run()
